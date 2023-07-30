@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, 'Titillium Web', sans-serif;
+}
+body{
+    background-color: #24353f;
+}
+body .Box{
+    box-shadow:-5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+h1{
+    color: #17a2b8;
+    font-weight: 500;
+    font-size: 40px;
+}
+input{
+    background-color: transparent !important;
+    color: #fff !important;
+}
+input::placeholder{
+    color: rgb(182, 182, 182) !important;
+}
+input:focus{
+    box-shadow: none !important;
+}
+button{
+    cursor: pointer;
+}
+button:hover{
+    color: #fff !important;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: revert;
+}
+body .navbar-brand{
+    text-decoration: none;
+}
+body .nav-link{
+    text-decoration: none;
+    border: 1px #ffc107 solid;
+}
+@media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1140px;
+    }
+}
