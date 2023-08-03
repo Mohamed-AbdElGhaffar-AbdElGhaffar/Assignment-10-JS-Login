@@ -30,32 +30,48 @@ function Empty(){
     }
 }
 
+var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+function validateEmail(element, regex) {
+  if (regex.test(element.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
 
 function validateSignUp(){
     Empty();
     if(testEmpty == false){
         validate.innerHTML=`All inputs is required`;
     }else{
-        validate.innerHTML=``;
-        for(var i=0;i<arr.length;i++){
-            if(signUpEmail.value == arr[i].signUpEmail){
-                testRepeated = false;
+        if(validateEmail(signUpEmail, regex) == true){
+            validate.innerHTML=``;
+            for(var i=0;i<arr.length;i++){
+                if(signUpEmail.value == arr[i].signUpEmail){
+                    testRepeated = false;
+                }
             }
-        }
-        if(testRepeated == false){
-            validate.innerHTML=`Email should not be repeated`;
-            testRepeated = true;
+            if(testRepeated == false){
+                validate.innerHTML=`Email should not be repeated`;
+                testRepeated = true;
 
-        }else{
-            var product={
-                signUpName: signUpName.value,
-                signUpEmail: signUpEmail.value,
-                signUpPassword: signUpPassword.value
+            }else{
+                var product={
+                    signUpName: signUpName.value,
+                    signUpEmail: signUpEmail.value,
+                    signUpPassword: signUpPassword.value
+                }
+                arr.push(product);
+                localStorage.setItem("arr", JSON.stringify(arr));
+                clearInput();
             }
-            arr.push(product);
-            localStorage.setItem("arr", JSON.stringify(arr));
-            clearInput();
+        }else{
+            validate.innerHTML=`Please, write an valid Email`;
         }
+        
     }
 }
 
@@ -81,21 +97,24 @@ function validateLogIn(){
     if(testEmpty == false){
         validate.innerHTML=`All inputs is required`;
     }else{
-        validate.innerHTML=``;
-        for(var i=0;i<arr.length;i++){
-            if(signInEmail.value == arr[i].signUpEmail && signInPassword.value == arr[i].signUpPassword){
-                testRepeated = false;
-                welcomeNumber = i;
-                localStorage.setItem("welcomeNumber", JSON.stringify(welcomeNumber));
-            }
-        }
-        if(testRepeated == true){
-            validate.innerHTML=`incorrect email or password`;
-        }else{
+        if(validateEmail(signInEmail, regex) == true){
             validate.innerHTML=``;
-            window.location.href = 'home.html';
+            for(var i=0;i<arr.length;i++){
+                if(signInEmail.value == arr[i].signUpEmail && signInPassword.value == arr[i].signUpPassword){
+                    testRepeated = false;
+                    welcomeNumber = i;
+                    localStorage.setItem("welcomeNumber", JSON.stringify(welcomeNumber));
+                }
+            }
+            if(testRepeated == true){
+                validate.innerHTML=`incorrect email or password`;
+            }else{
+                validate.innerHTML=``;
+                window.location.href = 'home.html';
+            }
+        }else{
+            validate.innerHTML=`Please, write an valid Email`;
         }
-
     }
 }
 
