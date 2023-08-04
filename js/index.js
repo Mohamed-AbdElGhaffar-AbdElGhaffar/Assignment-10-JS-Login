@@ -113,7 +113,7 @@ function validateLogIn(){
                 window.location.href = 'home.html';
             }
         }else{
-            validate.innerHTML=`Please, write an valid Email`;
+            validate.innerHTML=`Please, write a valid Email`;
         }
     }
 }
